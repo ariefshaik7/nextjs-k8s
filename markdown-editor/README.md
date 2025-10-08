@@ -1,36 +1,81 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-## Getting Started
 
-First, run the development server:
+# 📝 Markdown Live Editor Application
+
+This project is a modern, client-side web application built with Next.js, designed to provide a real-time, split-screen Markdown editing experience. It is the core application used in the surrounding DevOps assessment project.
+
+---
+
+![Markdown Editor](./assets/images/markdown-editor.png)
+
+---
+
+## Application Features
+
+  * **Real-time Preview:** Displays rendered HTML instantly as you type Markdown.
+  * **GFM Support:** Supports GitHub Flavored Markdown (GFM) features like tables and task lists using `remark-gfm`.
+  * **Static Export Ready:** Configured for a fully static output (`output: 'export'`) for efficient containerization and deployment via Nginx.
+  * **Modern Stack:** Built using Next.js, React, and TypeScript.
+
+## Getting Started (Local Development)
+
+Follow these instructions to get a local development copy running.
+
+### Prerequisites
+
+  * Node.js (Version 18 or later)
+  * npm or Yarn
+
+### 1\. Installation
+
+Navigate to the project directory (`markdown-editor`) and install the dependencies:
+
+```bash
+cd markdown-editor
+npm install
+# or
+yarn install
+```
+
+### 2\. Run the Development Server
+
+Start the Next.js development server:
 
 ```bash
 npm run dev
 # or
 yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open your browser to **`http://localhost:3000`** to see the application. The page will auto-update as you make changes to the source code.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+-----
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Deployment (Containerized)
 
-## Learn More
+This application is designed for containerized static deployment.
 
-To learn more about Next.js, take a look at the following resources:
+### 1\. Building the Production Files
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+The application must be built using Next.js's static export feature. The `Dockerfile` handles these steps internally.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```bash
+# This command generates the optimized static HTML/CSS/JS files in the '/out' directory.
+npm run build
+```
 
-## Deploy on Vercel
+### 2\. Running in a Local Docker Container
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+To test the final production image locally (without Kubernetes):
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```bash
+# Build the image using the multi-stage Dockerfile
+docker build -t markdown-editor-local .
+
+# Run the container (Nginx serves on port 80 inside the container)
+docker run --rm -p 8080:80 markdown-editor-local
+```
+
+Access the production build at: **`http://localhost:8080`**.
+
+---
