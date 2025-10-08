@@ -5,5 +5,5 @@ markdown:
     tag: '18342921804'
   replicaCount: 2
 
-ingress:
-  host: markdown-editor.local
+  ingress:
+    host: markdown-editor.local
