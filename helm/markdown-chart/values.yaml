@@ -1,0 +1,9 @@
+markdown:
+  port: 80
+  image:
+    repository: ariefshaik007/markdown-editor
+    tag: "v1"
+  replicaCount: 2
+
+ingress:
+  host: markdown-editor.local

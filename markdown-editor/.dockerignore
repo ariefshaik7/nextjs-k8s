@@ -1,0 +1,23 @@
+# Git files
+.git
+.github
+
+# Dependencies
+node_modules
+
+# Build artifact
+.next
+
+# Local environment variables
+.env.local
+
+# Docker files
+Dockerfile
+.dockerignore
+
+# Misc
+npm-debug.log
+README.md
+
+.gitignore
+.env

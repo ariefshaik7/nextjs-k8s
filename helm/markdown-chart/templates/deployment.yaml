@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: markdown-deployment
+  labels:
+    app: markdown
+spec:
+  replicas: {{ .Values.markdown.replicaCount }}
+  selector:
+    matchLabels:
+      app: markdown
+  template:
+    metadata:
+      labels:
+        app: markdown
+    spec:
+      containers:
+      - name: markdown
+        image: "{{ .Values.markdown.image.repository }}:{{ .Values.markdown.image.tag }}"
+        ports:
+        - name: http
+          containerPort: {{ .Values.markdown.port }}
+          protocol: TCP
