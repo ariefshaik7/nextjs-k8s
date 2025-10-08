@@ -2,7 +2,7 @@ markdown:
   port: 80
   image:
     repository: ariefshaik007/markdown-editor
-    tag: "v1"
+    tag: '18342921804'
   replicaCount: 2
 
 ingress:
