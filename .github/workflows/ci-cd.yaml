@@ -4,8 +4,11 @@ on:
   push:
     branches:
       - master
-    paths:
-      - 'markdown-editor/**'
+    paths-ignore:
+      - 'markdown-editor/README.md'
+      - 'helm/markdown-chart/values.yaml'
+      - 'README.md'
+      - 'argocd/**'
 
 env:
   REGISTRY: ghcr.io
